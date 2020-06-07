@@ -4,18 +4,19 @@ const sequelize = require('../connection')
 class Comment extends Model { }
 
 Comment.init({
-    title: {
+  username: {
     type: DataTypes.STRING,
     allowNull: false
   },
-   image: {
-    type: DataTypes.BLOB,
-    allowNull: true
+    title: {
+    type: DataTypes.STRING(1000),
+    allowNull: false
   },
-  user: {
-    type: DataTypes.BLOB,
-    allowNull: true
+  time: {
+    type: DataTypes.STRING,
+    allowNull: false
   }
+
 }, { sequelize, modelName: 'comment' })
 
 module.exports = Comment

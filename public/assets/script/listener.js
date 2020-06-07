@@ -55,3 +55,10 @@ function pendingList()
   }, setTime);
 
 }
+
+
+socket.on('Update',message =>
+{
+  $(`${message[1]}`).append(message[2])
+  $(`${message[1]}`).animate({ scrollTop: $(`${message[1]}`).height() * 100000}, 1000);
+})

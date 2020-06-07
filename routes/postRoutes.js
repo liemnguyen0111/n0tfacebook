@@ -101,7 +101,7 @@ router.post('/posts/addpost', async (req, res) =>{
     }
     
         path = ((check)? path : '#')
-     let body = {userUuid: uuid , body: req.body.posttext , image : path }
+     let body = {userUuid: uuid , body: req.body.posttext , image : path , time : `On ${moment().format(`l LT`)}`}
     
  
     Post.create(body)

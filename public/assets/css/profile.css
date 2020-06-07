@@ -297,10 +297,35 @@
     min-height: 20px;
     padding: 10px;
     margin: 0;
+    margin-bottom: 10%;
+    bottom: 5%;
+    /* padding-bottom: ; */
     overflow: auto;
     text-align: left;
   }
   
+  
+  /* Tim */
+
+  .commentArea p
+  {
+    min-width: 90%;
+    max-width: 90%;
+    margin: 5px;
+    word-wrap: break-word;
+  }
+
+  .userComment span
+{
+  margin: 5px;
+}
+
+.time
+{
+  font-size: small;
+  color: rgba(85, 85, 74, 0.555);
+}
+
   .friends {
     grid-area: friends;
     height: auto;

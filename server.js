@@ -32,20 +32,14 @@ io.on('connection', socket => {
     socket.on('newUserSignUp',  message =>
     {
         //Broadcast when a new user signup
-        console.log(message)
+        // console.log(message)
         socket.broadcast.emit("newUserSignUp", message)
     })
    
     // On new update, letting all the users that is friend know so we can re-render their list items
-    socket.on("newUpdate", ({userId, newUpdate}) => 
+    socket.on("Update", message => 
     {
-        if(userId.length > 0)
-        {
-            userId.forEach(user =>
-                {
-                    socket.emit(user, newUpdate )
-                })
-        } 
+        io.emit('Update',message)
     })
 
     // Sending message back and forth using user id
@@ -72,6 +66,6 @@ app.use(require('./routes'))
 
 // Create connection (instead of using app.listen, we now can use server.listen and we still can get the same result)
 require('./connection')
-.sync()
+.sync({force : false})
 .then(() => server.listen(PORT, () => console.log('http://localhost:3000')))
 .catch(err => console.error(err))

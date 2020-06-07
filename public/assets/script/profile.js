@@ -1,4 +1,3 @@
-
 const logOut = () => {
     console.log('hello')
     var date = new Date();
@@ -36,8 +35,10 @@ function userPost(userPost,firstName,lastName)
         // console.log(post)
         let comments = post.comments.reduce((allComments, comments) =>
         {
+          console.log(comments)
             return allComments +=  
-           ` <p>Name: <span>${comments.title}</span></p>`
+            `<p>${comments.username} : ${comments.title} <span class="time">${comments.time}</span></p>`
+          
             
             // console.log(comments)
         }
@@ -52,17 +53,16 @@ function userPost(userPost,firstName,lastName)
             <img src="${post.image}" alt="" class="postImage">
                </div>
             <hr />
-            <div class="commentArea">
+            <div class="commentArea comment${post.id}">
             ${comments}
             </div>
             <form  method="POST" data-postId="${post.id}" class="commentForm">
-              <input type="text" placeholder="Add your comment" />
+              <input type="text" name="text" placeholder="Add your comment" />
               <input type="submit" name="Send" value="Send" />
             </form>
           </div>`)
+          $(`.comment${post.id}`).animate({ scrollTop: $(`.comment${post.id}`).height() * 100000}, 1000);
             })  
-          // let allpost = document.querySelectorAll('.myPost')
-          // console.log(allpost[0].dataset.id)
 }
 
 
@@ -211,9 +211,36 @@ const renderMyFriends = () => {
     .catch((err) => console.log(err));
 };
 
+// Generate comment
+function generateComment(commId,user,value,time)
+{
+  $(`${commId}`).append(`<p>${user}: ${value} <span class="time">${time}</span></p>`)
+}
 
 // Add comment
-// document.getElementById('')
+document.addEventListener('submit', event =>
+{
+    event.preventDefault()
+    if (!document.cookie.split("=")[1]) {
+    } else {
+      axios
+        .get(`/api/users/info/${document.cookie.split("=")[1]}`)
+        .then(({data}) => {
+          let body = {username: (data.UserInfo.FirstName +" "+ data.UserInfo.LastName[0]), title: event.target.text.value, postId : event.target.dataset.postid}
+          axios.post('api/comments',body)
+          .then((message ) => {
+            socket.emit('Update', ['comment',`.comment${event.target.dataset.postid}`,`<p>${message.data.username} : ${message.data.title} <span class="time">${message.data.time}</span></p>`] )
+            event.target.text.value = ''
+            $(`.comment${event.target.dataset.postid}`).animate({ scrollTop: $(`.comment${event.target.dataset.postid}`).height() * 100000}, 1000);
+          })
+          .catch(err => console.error(err))
+        }
+        )
+        .catch(err => console.error(err))
+      }
+   
+    
+})
 
 // const logOut = () => {
 //   console.log("hello");

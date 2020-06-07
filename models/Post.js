@@ -11,6 +11,10 @@ Post.init({
    image: {
     type: DataTypes.STRING ,
     allowNull: true
+  },
+  time:{
+    type: DataTypes.STRING ,
+    allowNull: false
   }
 }, { sequelize, modelName: 'post' })
 
