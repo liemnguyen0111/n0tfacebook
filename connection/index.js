@@ -3,7 +3,7 @@ const Sequelize = require('sequelize')
 // let sequelize
 
 
-     const sequelize = new Sequelize("mysql://jppqn91gv0lrph8u:xleq3bqq4v4q9xbx@sq65ur5a5bj7flas.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/ml281dqbclp0zm1n", {
+     const sequelize = new Sequelize("mysql://hgwh4fkqqsobj5lu:blw7gk4jecx1x7b5@qf5dic2wzyjf1x5x.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/v48dqogftndvzg8r", {
       dialect:  'postgres',
       protocol: 'postgres',
       logging:  true //false
