@@ -1,0 +1,564 @@
+:root {
+    --banner-blue: #3d62ae;
+  }
+  
+  input:hover {
+    cursor: pointer;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .dropdown {
+    display: none;
+  }
+  
+  body {
+    margin: 0;
+    /* overflow: hidden; */
+  }
+  
+  /* scroll bar stylings */
+  .commentArea::-webkit-scrollbar {
+    /* display: none; */
+    width: 5px;
+    height: 8px;
+  }
+  
+  .commentArea::-webkit-scrollbar-track {
+    border-radius: 10px;
+    height: 1000px;
+  }
+  
+  .commentArea::-webkit-scrollbar-thumb {
+    background: rgba(90, 79, 79, 0.342);
+    border-radius: 10px;
+  }
+  
+  .commentArea::-webkit-scrollbar-track-piece {
+    height: 10px;
+  }
+  .main::-webkit-scrollbar {
+    /* display: none; */
+    width: 5px;
+    height: 8px;
+  }
+  
+  .main::-webkit-scrollbar-track {
+    border-radius: 10px;
+    height: 1000px;
+  }
+  
+  .main::-webkit-scrollbar-thumb {
+    background: rgba(90, 79, 79, 0.342);
+    border-radius: 10px;
+  }
+  
+  .main::-webkit-scrollbar-track-piece {
+    height: 10px;
+  }
+  
+  #container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    width: 100vw;
+    height: 100vh;
+    grid-template-rows: auto minmax(40%, auto) auto;
+    grid-template-areas:
+      "wrapper1 wrapper1 wrapper1"
+      "wrapper2 wrapper2 wrapper2"
+      "footer footer footer";
+  }
+  
+  /* Wrapper 1 */
+  #wrapper1 {
+    display: grid;
+    grid-area: wrapper1;
+    gap: 10px;
+    min-width: 100vw;
+    position: relative;
+    top: 0;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-areas:
+      "nav nav nav"
+      "recentpost postarea friendsList";
+    z-index: 2;
+  }
+  
+  /* Navbar */
+  .navBar {
+    display: grid;
+    grid-area: nav;
+    background-color: var(--banner-blue);
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 10px;
+    grid-template-areas: "logo title menu";
+  }
+  
+  .logo {
+    display: grid;
+    grid-area: logo;
+    position: relative;
+    min-width: 15%;
+    max-width: 15%;
+  }
+  
+  .title {
+    grid-area: title;
+    text-align: center;
+    font-size: 40px;
+    color: white;
+  }
+  
+  .menu {
+    grid-area: menu;
+    text-align: end;
+  }
+  
+  /* Recent post */
+  .recentpost {
+    margin: auto;
+    grid-area: recentpost; /* background-color: white; */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    text-align: center;
+    border-bottom: 1px solid rgb(1, 8, 1);
+  }
+  
+  .postarea {
+    grid-area: postarea;
+    margin: 10px;
+  }
+  
+  .textarea {
+    display: grid;
+    /* width: 90%; */
+    max-width: 90%;
+    min-width: 80%;
+    resize: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    transition-duration: 1s;
+  }
+  
+
+  /* post button */
+  .post {
+    display: block;
+    max-width: 100%;
+    min-width: 70%;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    background-image: linear-gradient(rgb(96, 118, 167), rgb(0, 102, 255));
+    color: #fff;
+    border-radius: 10px;
+    transition-duration: 50ms;
+  }
+  
+  .image
+  {
+    border: 1px solid rgba(2, 2, 10, 0.425);
+    box-sizing: border-box;
+    
+  }
+  .postImage
+  {
+    object-fit: scale-down;
+    max-width: 90%;
+    max-height: 90%;
+    background-repeat: no-repeat;
+    background-size: auto;
+  }
+
+  .postbody
+  {
+    /* font-size: 50px; */
+  }
+
+  .username
+  {
+    text-align: center;
+  }
+
+  .post:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .file:hover {
+    transform: translateY(-0.1rem);
+    transition: transform 150ms;
+  }
+  
+  .friendsList {
+    margin: auto;
+    grid-area: friendsList;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+    text-align: center;
+    border-bottom: 1px solid rgb(1, 8, 1);
+  }
+  
+  /* Wrapper 2 */
+  #wrapper2 {
+    grid-area: wrapper2;
+    display: grid;
+    position: static;
+    gap: 10px;
+    margin-top: 10px;
+    width: 100vw;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-areas: "postlist main friends";
+    z-index: 1;
+    box-sizing: border-box;
+  }
+  
+  .postlist {
+    grid-area: postlist;
+    height: auto;
+    top: 0;
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+    grid-template-rows: 50% 50%;
+    overflow: scroll;
+  }
+  
+  .postlist::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .userpost button:hover {
+    background-color: #8ea6d66c;
+    border-color: #29487dab;
+    border: 1px solid #ccd0d5;
+  }
+  
+  .main {
+    grid-area: main;
+    text-align: center;
+    overflow: scroll;
+    padding: 10px;
+    border-left: 1px solid rgb(1, 8, 1);
+    border-right: 1px solid rgb(1, 8, 1);
+    transition-duration: 2s;
+    transition: transform 1.5s 0s, opacity 1.25s 0s;
+  }
+  
+  .myPost {
+    box-sizing: border-box;
+    position: relative;
+    border: 1px solid rgb(0, 0, 2);
+    min-width: 60%;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: transform 1.5s 0s, opacity 1.25s 0s;
+  }
+  
+  .commentForm {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    right: 0;
+    border-radius: 10px;
+   
+  }
+  
+  .commentForm input[type="submit"] {
+    width: 10%;
+    padding: 1%;
+    border-radius: 10px;
+
+  }
+  
+  .commentForm input[type="text"] {
+    outline: 0;
+    padding: 1%;
+    width: 85%;
+    border-radius: 10px;
+    cursor: text;
+  }
+  
+  .commentArea {
+    display: grid;
+    height: auto;
+    max-height: 200px;
+    min-height: 20px;
+    padding: 10px;
+    margin: 0;
+    overflow: auto;
+    text-align: left;
+  }
+  
+  .friends {
+    grid-area: friends;
+    height: auto;
+    top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    grid-template-rows: 50% 50%;
+    grid-template-areas: "myFriends addFriends";
+    overflow: scroll;
+    width: 80%;
+  }
+  
+  .friends::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .myFriends {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
+    grid-area: myFriends;
+  }
+  
+  .addFriends {
+    border-top: 1px solid rgb(1, 8, 1);
+    grid-area: addFriends;
+  }
+  
+  /* Footer */
+  .myFooter {
+    grid-area: footer;
+    border-top: 1px solid rgb(1, 8, 1);
+    text-align: center;
+  }
+  
+  /* User Post */
+  .userpost {
+    padding: 5px;
+  }
+  
+  .userpost button {
+    width: 95%;
+    padding: 5px;
+    border: 1px solid rgba(7, 1, 1, 0.233);
+    box-sizing: border-box;
+    outline: 0;
+  }
+  
+  /* Friends */
+  
+  .user {
+    padding: 5px;
+  }
+  
+  .user button {
+    width: 95%;
+    padding: 5px;
+    border: 1px solid rgba(7, 1, 1, 0);
+    box-sizing: border-box;
+    outline: 0;
+  }
+  
+  .user button:hover {
+    border-color: #29487dab;
+    border: 1px solid #ccd0d5;
+    background-color: #8ea6d66c;
+  }
+  
+  /* Upload button */
+  input[type="file"] {
+    display: none;
+  }
+  
+  .file {
+    display: grid;
+    width: 5%;
+    height: 30px;
+    color: white;
+    background-color: rgb(13, 77, 102);
+    padding: 10px;
+    align-items: center;
+    border-radius: 10px;
+    background-image: url("/assets/Image/icons8-cute-color-50.png");
+    background-repeat: no-repeat;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    left: 0;
+    right: 0;
+  }
+  
+  .file:hover {
+    cursor: pointer;
+  }
+
+  .notification
+  {
+    position: fixed;
+    right: 5%;
+    top: 20%;
+    background-color: rgba(0, 0, 0, 0.295);
+    border-radius: 20px;
+    max-width: 200px;
+    border: 3px solid rgba(7, 10, 2, 0.322);
+    z-index: 12;
+    transition-duration: 1s;
+    /* transition-delay: 1.5s; */
+  }
+
+  /* Added notification - Tim 2:51AM 6/7/20 */
+  .notification p
+  {
+    padding: 10px;
+    margin: 0;
+  }
+
+  /* Added unfriend and friendbox classes Hoyeon */
+  .friendbox {
+    display: flex;
+  }
+  
+  #unFriend {
+    width: fit-content;
+  }
+
+  /* Change color of dropdown links on hover */
+  /*//////////////////////////////*/
+  /* Media query */
+  @media screen and (max-width: 800px) {
+    .logo {
+      display: none;
+    }
+    .friendsList {
+      display: none;
+    }
+    .friends {
+      display: none;
+    }
+    .postlist {
+      display: none;
+    }
+    .recentpost {
+      display: none;
+    }
+    .user {
+      display: none;
+    }
+    .menu {
+      display: none;
+    }
+  
+    /* Style The Dropdown Button */
+    .dropbtn {
+      justify-self: baseline;
+      padding: 0px;
+      font-size: 30px;
+      border: none;
+      cursor: pointer;
+      list-style-type: "\1F53D";
+    }
+  
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+      position: relative;
+      margin: auto;
+      display: inline-flex;
+    }
+  
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+      display: none;
+      top: 1rem;
+      position: absolute;
+      text-align: center;
+      background-color: #f9f9f9;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+  
+    /* Links inside the dropdown */
+    .dropdown-content a {
+      color: black;
+      padding: 10px;
+      text-decoration: none;
+      display: block;
+      width: 50%;
+    }
+  
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+  
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  
+    #wrapper1 {
+      display: grid;
+      grid-area: wrapper1;
+      position: relative;
+      gap: 10px;
+      min-width: 100vw;
+      top: 0;
+      grid-template-columns: auto;
+      grid-template-areas:
+        "nav"
+        "postarea";
+    }
+  
+    #wrapper2 {
+      display: grid;
+      grid-area: wrapper2;
+      position: relative;
+      gap: 10px;
+      min-width: 100vw;
+      grid-template-columns: auto;
+      grid-template-areas: "main";
+    }
+  
+    .navBar {
+      grid-template-columns: 3fr 1fr;
+      padding: 10px;
+      grid-template-areas: "title menu";
+    }
+  
+    .postarea {
+      background-image: linear-gradient(
+        rgba(96, 119, 167, 0.767),
+        rgba(58, 111, 192, 0.342)
+      );
+      border-radius: 10px;
+      margin: auto;
+    }
+    .main {
+      border: 0;
+      padding: 0;
+      width: 100vw;     
+    }
+    .myPost {
+      max-width: 90%;
+    }
+  
+    .textarea {
+      border-radius: 5px;
+    }
+  
+    .commentForm {
+      margin: 2px;
+    }
+    .commentForm input[type="text"] {
+      width: 75%;
+    }
+  
+    .commentForm input[type="submit"] {
+      width: 15%;
+      padding: 1%;
+      border-radius: 10px;
+    }
+  }
