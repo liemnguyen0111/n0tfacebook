@@ -1,28 +1,27 @@
 const { join } = require("path");
+const axios = require("axios");
+const { User } = require("../models");
 const router = require("express").Router();
 
-let isLogin = false
-
-router.get("/",  (req, res) => {
-
-  // if(!isLogin)
-  res.sendFile(join(__dirname, "../public/main.html"));
-  // else 
-  // res.sendFile(join(__dirname, "../public/profile.html"));
-
-});
-
-router.get("/test",  (req, res) => {
-  res.sendFile(join(__dirname, "../public/test.html"));
-});
-
-
-router.get("/profile", (req, res) => {
-  console.log(req.body)
-  if (true) {
+router.get("/", (req, res) => {
+  let found = false;
+  console.log(req.headers.cookie);
+  if (req.headers.cookie !== undefined) {
+    let temp = JSON.stringify(req.headers.cookie);
+    temp = temp.split(/[.,\/ ;"]/);
+    temp.forEach((item) => {
+      if (item.includes("name")) {
+        let temp2 = item.split("=");
+        if (temp2[1] !== "undefined") {
+          found = true;
+        }
+      }
+    });
+  }
+  if (found) {
     res.sendFile(join(__dirname, "../public/profile.html"));
-  } else{
-    res.sendFile(join(__dirname, "../public/index.html"));
+  } else {
+    res.sendFile(join(__dirname, "../public/main.html"));
   }
 });
 

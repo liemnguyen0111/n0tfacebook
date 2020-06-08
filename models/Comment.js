@@ -1,22 +1,24 @@
-const { Model, DataTypes } = require('sequelize')
-const sequelize = require('../connection')
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../connection");
 
-class Comment extends Model { }
+class Comment extends Model {}
 
-Comment.init({
-  username: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
+Comment.init(
+  {
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     title: {
-    type: DataTypes.STRING(1000),
-    allowNull: false
+      type: DataTypes.STRING(5000),
+      allowNull: false,
+    },
+    time: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
-  time: {
-    type: DataTypes.STRING,
-    allowNull: false
-  }
+  { sequelize, modelName: "comment" }
+);
 
-}, { sequelize, modelName: 'comment' })
-
-module.exports = Comment
+module.exports = Comment;

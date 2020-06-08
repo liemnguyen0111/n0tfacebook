@@ -1,7 +1,6 @@
 const router = require("express").Router();
-const moment = require('moment')
+const moment = require("moment");
 const { Comment } = require("../models");
-
 
 // Add a comment to a post - Done (Tim)
 router.post("/comments", (req, res) => {
@@ -22,7 +21,7 @@ router.put("/comments/:id", (req, res) => {
 
 // Delete a Comment - Done (Tim)
 router.delete("/comments/:id", (req, res) => {
-  Comment.destroy( { where: { id: req.params.id } })
+  Comment.destroy({ where: { id: req.params.id } })
     .then(() => res.sendStatus(200))
     .catch((err) => console.error(err));
 });

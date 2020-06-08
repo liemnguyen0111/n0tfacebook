@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "ggit+https://github.com/liemnguyen0111/n0tfacebook.git"
+    "url": "git+https://github.com/pravinsisowath/bestBook.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/liemnguyen0111/n0tfacebook/issues"
+    "url": "https://github.com/pravinsisowath/bestBook/issues"
   },
-  "homepage": "https://github.com/liemnguyen0111/n0tfacebook#readme",
+  "homepage": "https://github.com/pravinsisowath/bestBook#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
