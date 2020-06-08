@@ -45,8 +45,9 @@ function userPost(userPost,firstName,lastName)
         ,'')
 
         $('.main').prepend(
-            `  
+            `     
             <div class="myPost" data-id="${post.id}">
+            <button class="deletePost" name = "delete" data-deleteid ="${post.id}">Delete | x</button>
             <h3 class ="username"> ${firstName} ${lastName} : <span class ="postbody">${post.body}</span></h3>
             
             <div class="image"> 
@@ -271,6 +272,7 @@ document.addEventListener('submit', event =>
       axios
         .get(`/api/users/info/${document.cookie.split("=")[1]}`)
         .then(({data}) => {
+          console.log(Date())
           let body = {username: (data.UserInfo.FirstName +" "+ data.UserInfo.LastName[0]), title: event.target.text.value, postId : event.target.dataset.postid}
           axios.post('api/comments',body)
           .then((message ) => {
@@ -289,6 +291,33 @@ document.addEventListener('submit', event =>
     
 })
 
+// Delete post - Tim
+document.addEventListener('click', event =>
+{
+  event.preventDefault()
+  console.log(event.target.name)
+  if(event.target.name === 'delete')
+  {
+    axios.delete(`api/posts/delete/${document.cookie.split("=")[1]}/${event.target.dataset.deleteid}`)
+    .then(data => {
+      console.log(data)
+    let post = document.querySelectorAll('.myPost')
+    post.forEach(item => {if(item.dataset.id === event.target.dataset.deleteid) 
+      {
+        item.classList.add('delete') 
+        item.style.height = '50px'
+        item.innerHTML = '<p></p>'
+        setTimeout(() => {
+          item.remove()
+        }, 2000);
+     }
+      
+    })
+    socket.emit('Update', ['deletePost',`.myPost`,`${event.target.dataset.deleteid}`] )
+    })
+    .catch(err => console.error(err))
+      }
+})
 
 // Pravin - 
 document.getElementById('dropdown').addEventListener('click', event =>

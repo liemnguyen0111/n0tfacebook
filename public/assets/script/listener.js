@@ -59,6 +59,18 @@ function pendingList()
 
 socket.on('Update',message =>
 {
+  if(message[0] === 'comment')
+  {
   $(`${message[1]}`).append(message[2])
   $(`${message[1]}`).animate({ scrollTop: $(`${message[1]}`).height() * 100000}, 1000);
+  }
+  if(message[0] === 'deletePost')
+  {
+    let post = document.querySelectorAll(`${message[1]}`)
+    post.forEach(item => {
+    if(item.dataset.id === message[2])
+    {
+      item.css('height : 0px;')
+    }})
+  }
 })

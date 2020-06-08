@@ -107,8 +107,6 @@ router.post('/posts/addpost', async (req, res) =>{
     Post.create(body)
     .then((data) => {
         data.dataValues.comments = []
-        // console.log(data.dataValues.comments = [])
-        // res.json(data)
         User.findOne({ where : { uuid : uuid }, attributes : ['firstName', 'lastName']})
         .then(({firstName,lastName}) => {
 

@@ -9,7 +9,7 @@ Comment.init({
     allowNull: false
   },
     title: {
-    type: DataTypes.STRING(1000),
+    type: DataTypes.STRING(5000),
     allowNull: false
   },
   time: {
