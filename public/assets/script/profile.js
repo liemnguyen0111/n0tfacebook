@@ -52,7 +52,7 @@ function userPost(userPost, firstName, lastName, type) {
   }
   userPost.forEach((post) => {
     let comments = post.comments.reduce((allComments, comments) => {
-      return (allComments += `<p>${comments.username} : ${comments.title} <span class="times">( On ${comments.time} )</span></p>`);
+      return (allComments += `<p>${comments.username} : ${comments.title} <span class="times">( ${comments.time} )</span></p>`);
     }, "");
 
     let button;
@@ -360,7 +360,7 @@ document.addEventListener("submit", (event) => {
               socket.emit("Update", [
                 "comment",
                 `.comment${event.target.dataset.postid}`,
-                `<p>${message.data.username} : ${message.data.title} <span class="times">( On ${message.data.time} )</span></p>`,
+                `<p>${message.data.username} : ${message.data.title} <span class="times">( ${message.data.time} )</span></p>`,
               ]);
               event.target.text.value = "";
               // $(`.comment${event.target.dataset.postid}`).scrollTop(1E10)
