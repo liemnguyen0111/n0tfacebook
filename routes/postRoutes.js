@@ -102,7 +102,7 @@ router.post("/posts/addpost", async (req, res) => {
     userUuid: uuid,
     body: req.body.posttext,
     image: path,
-    time: `On ${req.body.time}`,
+    time: `${req.body.time}`,
   };
   Post.create(body)
     .then((data) => {
