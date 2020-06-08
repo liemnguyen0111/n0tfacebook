@@ -364,6 +364,11 @@ body {
   grid-area: addFriends;
 }
 
+#searchFriend
+{
+  margin: 16px 0px;
+}
+
 /* Footer */
 .myFooter {
   grid-area: footer;
