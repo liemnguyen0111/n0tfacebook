@@ -44,7 +44,7 @@ function userPost(userPost, firstName, lastName, type) {
   }
   if (userPost.length === 0 && type === "") {
     $(".main").append(
-      `<h1 class="noPost yourposttext">Do you want to post your first post?</h1>`
+      `<h1 class="noPost yourposttext">Do you want to post your first post!</h1>`
     );
   }
   userPost.forEach((post) => {
