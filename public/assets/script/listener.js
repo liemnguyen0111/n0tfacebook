@@ -42,7 +42,7 @@ function pendingList() {
 }
 
 
-let newUpate = 0;
+let newUpdate = 0;
 let pendingUpdate;
 let time = 1000
 socket.on("Update", (message) => {
@@ -65,7 +65,7 @@ socket.on("Update", (message) => {
 
   if (message[0] === "unfriend") {
     if (document.cookie.split("=")[1] === message[1]) {
-      newUpate++
+      newUpdate++
       if(newUpdate > 0 && newUpdate <= 1)
       {
         updatePendingList()
@@ -75,7 +75,7 @@ socket.on("Update", (message) => {
 
   if (message[0] === "addfriend") {
     if (document.cookie.split("=")[1] === message[1]) {
-      newUpate++
+      newUpdate++
       if(newUpdate > 0 && newUpdate <= 1)
       {
         updatePendingList()
@@ -103,7 +103,7 @@ function updatePendingList()
       renderFriendSuggestion();
       renderMyFriends();
       generateRecentPost();
-      newUpate--
+      newUpdate--
     }
     else
     {
