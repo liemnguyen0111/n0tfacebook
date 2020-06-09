@@ -62,6 +62,7 @@ socket.on("Update", (message) => {
     if (document.cookie.split("=")[1] === message[1]) {
       console.log('unfriend')
       renderFriendSuggestion();
+      renderMyFriends();
       generateRecentPost();
     }
   }
@@ -70,6 +71,7 @@ socket.on("Update", (message) => {
     if (document.cookie.split("=")[1] === message[1]) {
       console.log('in addfriend 2')
       renderFriendSuggestion();
+      renderMyFriends();
       generateRecentPost();
     }
   }
