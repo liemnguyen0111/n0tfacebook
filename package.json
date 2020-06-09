@@ -1,5 +1,5 @@
 {
-  "name": "notFaceBook",
+  "name": "n0tFfacebook",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -36,6 +36,6 @@
     "use_env_variable": "DATABASE_URL"
   },
   "engines": {
-    "node": "10.x"
+    "node": "12.11.1"
   }
 }
