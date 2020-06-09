@@ -280,7 +280,7 @@ iframe:hover
 }
 
 .main div {
-  transition-duration: 5s;
+  transition-duration: 1s;
 }
 
 .delete {
@@ -671,6 +671,7 @@ input[type="file"] {
   }
   .myPost {
     max-width: 90%;
+    margin-top: 25px;
   }
 
   .textarea {
