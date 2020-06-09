@@ -229,11 +229,14 @@ function addFriend(id) {
     })
     .then(() => {
       socket.emit("Update", ["addfriend", `${id}`]);
+      renderMyFriends();
+      renderFriendSuggestion();
+      generateRecentPost();
     })
-    .catch((err) => {});
+    .catch((err) => {
     renderMyFriends();
     renderFriendSuggestion();
-    generateRecentPost();
+    });
 }
 
 // search and first name of users - alan - hoyeon(6/7/20-11pm) - Tim edited from
@@ -274,12 +277,15 @@ function unFriend(id) {
       },
     })
     .then(() => {
+      socket.emit("Update", ["unfriend", `${id}`]);
       renderMyFriends();
       renderFriendSuggestion();
-      generateRecentPost();
-      socket.emit("Update", ["unfriend", `${id}`]);
+      generateRecentPost(); 
     })
-    .catch((err) => {});
+    .catch((err) => {
+      renderMyFriends();
+      renderFriendSuggestion();
+    });
 }
 
 //show all users who are currently friends with me- hoyeon
