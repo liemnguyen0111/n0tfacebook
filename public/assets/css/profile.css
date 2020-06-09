@@ -170,8 +170,30 @@ body {
 
 .postbody {
   word-wrap: break-word;
+  max-width: 90%;
 }
 
+iframe
+{
+  display:grid;
+  max-width: 95%;
+  max-height: 70%;
+  margin-top:5px;
+  margin-bottom:5px;
+  margin: auto;
+  background: black;
+  border-radius: 10px;
+}
+
+iframe:hover
+{
+  cursor: pointer;
+}
+
+:hover
+{
+  z-index: 20;
+}
 .username {
   text-align: center;
 }

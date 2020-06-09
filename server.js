@@ -53,6 +53,6 @@ io.on("connection", (socket) => {
 const PORT = process.env.PORT || 3000;
 // Create connection (instead of using app.listen, we now can use server.listen and we still can get the same result)
 require("./connection")
-  .sync()
+  .sync({force:false})
   .then(() => server.listen(PORT, () => console.log("http://localhost:3000")))
   .catch((err) => console.error(err));
