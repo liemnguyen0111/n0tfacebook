@@ -16,6 +16,7 @@ socket.on("newUserSignUp", (message) => {
   }
 });
 
+
 function pendingList() {
   pending = setInterval(() => {
     if (newUser.length > 0) {
@@ -40,6 +41,10 @@ function pendingList() {
   }, setTime);
 }
 
+
+let newUpate = 0;
+let pendingUpdate;
+let time = 1000
 socket.on("Update", (message) => {
   if (message[0] === "comment") {
     $(`${message[1]}`).append(message[2]);
@@ -60,19 +65,21 @@ socket.on("Update", (message) => {
 
   if (message[0] === "unfriend") {
     if (document.cookie.split("=")[1] === message[1]) {
-      console.log('unfriend')
-      renderFriendSuggestion();
-      renderMyFriends();
-      generateRecentPost();
+      newUpate++
+      if(newUpdate > 0 && newUpdate <= 1)
+      {
+        updatePendingList()
+      }   
     }
   }
 
   if (message[0] === "addfriend") {
     if (document.cookie.split("=")[1] === message[1]) {
-      console.log('in addfriend 2')
-      renderFriendSuggestion();
-      renderMyFriends();
-      generateRecentPost();
+      newUpate++
+      if(newUpdate > 0 && newUpdate <= 1)
+      {
+        updatePendingList()
+      }   
     }
   }
 
@@ -86,3 +93,22 @@ socket.on("Update", (message) => {
   }
 });
 
+
+function updatePendingList()
+{
+
+  pendingUpdate = setInterval(() => {
+    if(newUpdate > 0)
+    {
+      renderFriendSuggestion();
+      renderMyFriends();
+      generateRecentPost();
+      newUpate--
+    }
+    else
+    {
+      clearInterval(pendingUpdate)
+    }
+    
+  }, time);
+}
