@@ -367,7 +367,7 @@ body {
 #searchFriend
 {
   margin: 16px 0px;
-  width: auto;
+  cursor: text;
 }
 
 /* Footer */
