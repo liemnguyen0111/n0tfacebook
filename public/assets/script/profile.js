@@ -365,7 +365,9 @@ document.addEventListener("submit", (event) => {
               event.target.text.value = "";
               // $(`.comment${event.target.dataset.postid}`).scrollTop(1E10)
             })
-            .catch((err) => {});
+            .catch((err) => {
+              back()
+            });
         })
         .catch((err) => {});
     }
