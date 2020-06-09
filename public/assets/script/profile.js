@@ -1,5 +1,4 @@
 const logOut = () => {
-  console.log("hello");
   var date = new Date();
   var utcDate = new Date(date.toUTCString());
   utcDate.setHours(utcDate.getHours());
@@ -32,9 +31,7 @@ function loggedInStatus() {
               <button id='logOut' onclick='logOut()'>Log Out</button>
               `;
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch((err) => {});
   }
   // renderMyFriends();
   // renderFriendSuggestion();
@@ -110,7 +107,7 @@ function back() {
               <button id='logOut' onclick='logOut()'>Log Out</button>
               `;
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
   }
 }
 
@@ -134,7 +131,7 @@ function generateRecentPost() {
         );
       });
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {});
 }
 // Show post
 function showPost(data, fname, lname) {
@@ -144,7 +141,7 @@ function showPost(data, fname, lname) {
       $(".main").empty();
       userPost([data], fname, lname, "friend");
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {});
 }
 
 // Add new post
@@ -196,7 +193,7 @@ document.getElementById("post").addEventListener("click", async (event) => {
           loggedInStatus();
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {});
 
     document.getElementById("file").value = null;
     document.getElementById("posttext").value = "";
@@ -208,7 +205,7 @@ document.getElementById("post").addEventListener("click", async (event) => {
 // //show a list of other users who are not friends yet with me - hoyeon(6/7/20-11pm)
 const renderFriendSuggestion = () => {
   if (!document.cookie.split("=")[1]) {
-    console.log("Not logged in");
+
   } else {
     axios
       .get(`/api/friend/findfriend/${document.cookie.split("=")[1]}`)
@@ -220,7 +217,7 @@ const renderFriendSuggestion = () => {
           document.getElementById("friendSuggest").append(notfriendElem);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
   }
 };
 
@@ -233,8 +230,7 @@ function addFriend(id) {
     .then(() => {
       socket.emit("Update", ["addfriend", `${id}`]);
     })
-    .catch((err) => console.error(err));
-    console.log('render friendsugg mfriend rpost')
+    .catch((err) => {});
     renderMyFriends();
     renderFriendSuggestion();
     generateRecentPost();
@@ -264,9 +260,7 @@ document
               ""
             );
           })
-          .catch((err) => {
-            console.log(err);
-          });
+          .catch((err) => {});
       }
     }, 1000);
   });
@@ -285,7 +279,7 @@ function unFriend(id) {
       generateRecentPost();
       socket.emit("Update", ["unfriend", `${id}`]);
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {});
 }
 
 //show all users who are currently friends with me- hoyeon
@@ -301,7 +295,7 @@ const renderMyFriends = () => {
         document.getElementById("friendList").append(friendElem);
       }
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {});
 };
 
 // Tim 6/8/20
@@ -320,7 +314,7 @@ let friendWall = (id) => {
         `<button class="backHome"  onclick=back()>HOME</button>`
       );
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {});
 };
 
 function generateComment(commId, user, value, time) {
@@ -365,9 +359,9 @@ document.addEventListener("submit", (event) => {
               event.target.text.value = "";
               // $(`.comment${event.target.dataset.postid}`).scrollTop(1E10)
             })
-            .catch((err) => console.error(err));
+            .catch((err) => {});
         })
-        .catch((err) => console.error(err));
+        .catch((err) => {});
     }
   }
 });
@@ -397,7 +391,7 @@ function deletePost(id) {
 
         socket.emit("Update", ["deletepost", `.userpost`, `${id}`]);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {});
   }
 }
 
@@ -431,7 +425,7 @@ document.getElementById("dropdown").addEventListener("click", (event) => {
           $(".main").append(friendElem);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {});
   }
   if (event.target.value === "logout") {
     logOut();
