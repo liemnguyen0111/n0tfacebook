@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/assets/css/profile.css" />
+
+  <script defer src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc="
+  crossorigin="anonymous"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
+  <script defer src="./socket.io/socket.io.js"></script>
+  <script defer src="/assets/script/listener.js"></script>
+  <script defer src="/assets/script/profile.js"></script>
+  <title>Home</title>
+</head>
+<body>
+  <div id="container">
+    <div id="wrapper1">
+      <nav class="navBar">
+        <img class="logo" src="assets/Image/no-facebook.png" alt="NotFaceBook" />
+        <div class="title">NotFaceBook</div>
+        <div class="dropdown">
+          <select name="menu" id="dropdown">
+            <option value="home">Home</option>
+            <option value="recentpost">Recent Post</option>
+            <!-- <option value="friends">Friends</option> -->
+            <option value="logout">Log out</option>
+          </select>
+        </div>
+        <div class="menu">
+          <div class="loggedIn" id="loggedIn">
+          </div>
+        </div>
+      </nav>
+      <aside class="recentpost">
+        <p>Recent friends post</p>
+      </aside>
+      <form class="postarea" id="POSTIT" method="POST" enctype="multipart/form-data">
+        <label for="id" name="id" value='getid()'></label>
+        <label for="posttext"></label>
+        <textarea name="posttext" class="textarea" id="posttext" cols="40" rows="3"
+          placeholder="What's on your mind?"></textarea>
+        <input name="postImage" type="file" id="file" accept="image/*" />
+        <input name="time" class="time"></input>
+        <label for="file" class="file"></label>
+        <button class="post" id="post" type="submit" action="/api/posts/addpost">Post It !</button>
+      </form>
+      <aside class="friendsList">
+        <form id='searchFriendForm'>
+          <input id='searchFriend' type="text" name="Search Friend" placeholder="Search Friend by first name" />
+        </form>
+      </aside>
+    </div>
+    <div id="wrapper2">
+      <aside class="postlist">
+      </aside>
+      <section class="main" id="main"> 
+      </section>
+      <!-- Friends -->
+      <aside class="friends" id="friends">
+        <section class="myFriends">
+          <div>My current friends</div>
+          <div class="user"  id="friendList">
+            <!-- <button>User 1</button> -->
+          </div>
+        </section>
+        <!-- add friend button -->
+        <section class="addFriends">
+          <div>Add new friends</div>
+          <div class="user"  id="friendSuggest">
+            <!-- <button>+ hoyeon</button> -->
+          </div>
+        </section>
+      </aside>
+    </div>
+    <!-- footer -->
+    <footer class="myFooter">
+      <p>Developers: <span>Alan | Pravin | Hoyeon | Tim</span></p>
+    </footer>
+  </div>
+
+</body>
+
+</html>
