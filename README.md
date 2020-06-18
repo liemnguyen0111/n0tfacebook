@@ -17,7 +17,8 @@
 - Go to the following deployed link and enjoy this app!
 
 ## Github Repo
-- [https://github.com/pravinsisowath/notFacebook](https://github.com/pravinsisowath/notFacebook)
+- [https://github.com/liemnguyen0111/n0tfacebook](https://github.com/liemnguyen0111/n0tfacebook)
+
 
 ## Deployed URL by Heroku
 - [https://n0tfacebook.herokuapp.com/](https://n0tfacebook.herokuapp.com/)
