@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 
- const sequelize = new Sequelize('mysql://cdkdejqc2xjj6qpt:uc8u5ju40npxbcvb@cm4uzjbiregm5ia8.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/primary_app_db', 
+ const sequelize = new Sequelize(JAWSDB_MARIA_BLUE_URL, 
     {
   dialect:  'mysql'
     });
